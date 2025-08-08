@@ -72,7 +72,7 @@ async function update() {
     }
 
     const activity = {
-        name: currentSettings.appName || Constants.DEFAULT_APP_NAME,
+        name: lastTrack.artist, "-", lastTrack.name,
         flags: 0,
         type: currentSettings.listeningTo ? ActivityType.LISTENING : ActivityType.PLAYING,
         details: lastTrack.name,
@@ -92,7 +92,7 @@ async function update() {
     // Set timestamps
     if (currentSettings.showTimestamp) {
         activity.timestamps = {
-            start: Date.now()| 0
+            start: Date.now() | 0
         };
     }
 
