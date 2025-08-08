@@ -72,11 +72,11 @@ async function update() {
     }
 
     const activity = {
-        name: lastTrack.artist, "-", lastTrack.name,
+        name: `${lastTrack.artist} - ${lastTrack.name} `,
         flags: 0,
         type: currentSettings.listeningTo ? ActivityType.LISTENING : ActivityType.PLAYING,
         details: lastTrack.name,
-        state: `${lastTrack.artist}`,
+        state: `${lastTrack.artist} `,
         status_display_type: 1,
         application_id: Constants.APPLICATION_ID,
     } as Activity;
@@ -85,7 +85,7 @@ async function update() {
 
     if (activity.name.includes("{{")) {
         for (const key in lastTrack) {
-            activity.name = activity.name.replace(`{{${key}}}`, lastTrack[key]);
+            activity.name = activity.name.replace(`{ {${key} } } `, lastTrack[key]);
         }
     }
 
@@ -101,7 +101,7 @@ async function update() {
 
         activity.assets = {
             large_image: asset[0],
-            large_text: `${lastTrack.album}`
+            large_text: `${lastTrack.album} `
         };
     }
 
